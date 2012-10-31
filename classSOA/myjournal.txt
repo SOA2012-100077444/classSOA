@@ -1,0 +1,116 @@
+PUSHING A REPOSITORY:
+
+BASIC THINGS TO INPUT FOR FIRST PUSH:
+1.	git init
+2.	git remote add origin https://github.com/SOA2012-100077444/classSOA.git
+3.	git commit –m “whatever”
+4.	git push origin master
+
+BASIC THINGS TO INPUT FOR COMMON PUSH:
+
+1.	git init
+2.	git remote add classSOA
+3.	git commit –m “whatever”
+4.	git push 
+
+PROBLEMS MET AND ATTEMPS TO SOLVE THEM:
+
+ ~$ cd Documents
+ ~/Documents$ git init
+
+Reinitialized existing Git repository in /home/ubuntu/Documents/.git/
+
+ ~/Documents$ git add classSOA
+ ~/Documents$ git commit
+
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	rottenpotatoes/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+ ~/Documents$ git push
+
+Username for 'https://github.com': SOA2012-100077444
+Password for 'https://SOA2012-100077444@github.com': 
+
+Everything up-to-date
+
+SOLVING “EVERYTHING UP-TO-DATE” PROBLEM:
+
+ ~/Documents$ git remote show origin
+∗	remote origin  
+  Fetch URL: https://github.com/SOA2012-100077444/classSOA.git
+  Push  URL: https://github.com/SOA2012-100077444/classSOA.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
+
+ ~/Documents$ git checkout master
+
+Already on 'master'
+ 
+FAILED ATTEMPT 1
+ ~/Documents$ git push
+
+Username for 'https://github.com': SOA2012-100077444
+Password for 'https://SOA2012-100077444@github.com': 
+
+Everything up-to-date
+
+
+FAILED ATTEMPT 2
+
+ ~/Documents$ git push --all origin
+Username for 'https://github.com': SOA2012-100077444
+Password for 'https://SOA2012-100077444@github.com': 
+
+Everything up-to-date
+
+
+SUCCESSFUL ATTEMPT 
+
+(I should have made changes in the repo before pushing, if not it says “everything is up-to-date”.  My local repository and the remote repo where exactly the same, that is why it keeps sending this message.)
+
+ ~/Documents$ ls classSOA
+ ~/Documents$ cd classSOA
+ ~/Documents/classSOA$ nano aboutme.txt
+ ~/Documents/classSOA$ ls
+     aboutme.txt
+ ~/Documents/classSOA$ cd ..
+ ~/Documents$ git init
+
+Reinitialized existing Git repository in /home/ubuntu/Documents/.git/
+
+ ~/Documents$ git add classSOA
+ ~/Documents$ git commit -m "Mytask"
+   [master 4f1d461] Mytask
+Committer: saasbook <saasbook@saasbook.(none)>
+
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit –amend --reset-author
+
+ 1 file changed, 15 insertions(+)
+ create mode 100644 classSOA/aboutme.txt
+
+~/Documents$ git push
+
+Username for 'https://github.com': SOA2012-100077444
+Password for 'https://SOA2012-100077444@github.com': 
+To https://github.com/SOA2012-100077444/classSOA.git
+   416aad0..4f1d461  master -> master
+
+~/Documents$ 
+

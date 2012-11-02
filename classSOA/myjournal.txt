@@ -74,7 +74,8 @@ Everything up-to-date
 
 SUCCESSFUL ATTEMPT 
 
-(I should have made changes in the repo before pushing, if not it says “everything is up-to-date”.  My local repository and the remote repo where exactly the same, that is why it keeps sending this message.)
+(I should have made changes in the repo before pushing, if not it says “everything is up-to-date”.  
+ My local repository and the remote repo where exactly the same, that is why it keeps sending this message.)
 
  ~/Documents$ ls classSOA
  ~/Documents$ cd classSOA
@@ -112,5 +113,61 @@ Password for 'https://SOA2012-100077444@github.com':
 To https://github.com/SOA2012-100077444/classSOA.git
    416aad0..4f1d461  master -> master
 
-~/Documents$ 
+CREATING A RAILS APP.
 
+~$ cd Documents
+
+~/Documents$ rails new myrottenpotatoes -T
+
+Enter your password to install the bundled RubyGems to your system: 
+
+    (the pass is "saasbook")
+
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+ ~/Documents$ cd myrottenpotatoes
+
+        Start from the location “myrottenpotatoes”
+
+~/Documents/myrottenpotatoes$
+~/Documents/myrottenpotatoes$ vi Gemfile
+  (press esc and type ZZ to exit Gemfile editing and save changes)
+~/Documents/myrottenpotatoes$ bundle install --without production 
+~/Documents/myrottenpotatoes$ rails server
+
+    Open new terminal and type “rake route”
+    Then edit “config/routes.rb”.
+    cd to config
+    vi routes.rb
+    esc
+    ZZ
+  delete le file “public/index.html” if it exists (open document)
+  Save the file and run rake routes again.
+
+Create migration
+
+~/Documents/myrottenpotatoes$ rails generate migration create_movies 
+~/Documents/myrottenpotatoes$ db/migrate 
+
+  Edit “…create_movies.rb”, save and exit file (http://pastebin.com/tmSkQX8b )
+
+~/Documents/myrottenpotatoes$ rake db:migrate
+
+  (Type rake db:migrate again to verify that it does nothing the second time.) 
+
+Create a file named “movies.rb” with the following content (http://pastebin.com/PbFnAGt1 )
+
+~$ cd Documents/myrottenpotatoes/app/models
+
+  Make the file “movies.rb” by typing “nano movies.rb
+
+  Stop the running application with Control-C and instead run rails console.
+  (Rails server must keep running, [- the instruction “stop the running application with Control-C” being confusing])
+~/Documents/myrottenpotatoes$ rails console
+
+  (it will prompt “Loading development environment (Rails 3.1.0) irb(main):001:0>”)
+
+  Input the follwing content (http://pastebin.com/2HETvZyz )
+  Before continuing, seed the database with some movies
+
+      (http://pastebin.com/hNB7kpWz )

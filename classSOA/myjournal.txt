@@ -13,6 +13,34 @@ BASIC THINGS TO INPUT FOR COMMON PUSH:
 3.	git commit –m “whatever”
 4.	git push 
 
+GOT A PROBLEM PUSHING MY DOCUMENTS
+
+To make it work I had to type git remote add Documents… as below
+
+$ git init
+
+Reinitialized existing Git repository in /home/ubuntu/.git/
+
+~$ git remote add Documents https://github.com/SOA2012-100077444/classSOA.git
+~$ git commit -a
+
+ On branch master
+ Changes not staged for commit:
+
+[…]
+
+ no changes added to commit (use "git add" and/or "git commit -a")
+
+ ~$ git push Documents
+
+ Username for 'https://github.com': SOA2012-100077444
+
+ Password for 'https://SOA2012-100077444@github.com': 
+ To https://github.com/SOA2012-100077444/classSOA.git
+
+    6952a5a..db99fcf  master -> master
+
+
 PROBLEMS MET AND ATTEMPS TO SOLVE THEM:
 
  ~$ cd Documents
@@ -169,5 +197,4 @@ Create a file named “movies.rb” with the following content (http://pastebin.
 
   Input the follwing content (http://pastebin.com/2HETvZyz )
   Before continuing, seed the database with some movies
-
       (http://pastebin.com/hNB7kpWz )

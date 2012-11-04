@@ -10,6 +10,6 @@ Programming background:
 Work Experience:
 - Interpreter at OTIS
 - Interpreter for PAE.Inc
-- Translator and interpreter for Vision Plus International
-
+- Translator and interpreter for Vision Plus 
+end
 

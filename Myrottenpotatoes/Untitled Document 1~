@@ -1,0 +1,36 @@
+CREATING A NEW APP.
+ 
+	STEP ONE
+
+		~/Documents$ rails new Myrottenpotatoes -T
+
+	STEP TWO
+
+				Edit the Gemfile by pasting the content from the following linK (http://pastebin.com/AGMAxaag)
+
+				For this first cd to Myrottenpotatoes
+
+		~/Documents$ cd Myrottenpotatoes/
+		~/Documents/Myrottenpotatoes$ vim Gemfile
+
+				Press "esc" to stop editing, "shift+ZZ" to save and exit.
+
+	STEP THREE
+
+				Run "bundle install --without production" to checks if any gems specified in our Gemfile are missing and need to be installed.
+		
+		~/Documents/Myrottenpotatoes$ bundle install --without production
+
+				The following message tells everything is fine (Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.)
+
+				Start the app with rails server and point a browser to http://localhost:3000.
+
+				At this level it's normal to have a routing error if we point the browser to http://localhost:3000/movies
+
+				Type rake route to make sure that it prints nothing since there are no routes in our brand new app.
+
+		~/Documents/Myrottenpotatoes$ rake routes
+
+
+CREATION OF RESTful ROUTES FOR CRUD.
+

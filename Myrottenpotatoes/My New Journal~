@@ -1,0 +1,176 @@
+________________________________________________________________________________________________
+
+CREATING A NEW APP./ APP. CREATION
+________________________________________________________________________________________________ 
+
+RAILS BASICS: FROM ZERO TO CRUD
+-------------------------------
+	STEP ONE
+
+		~/Documents$ rails new Myrottenpotatoes -T
+
+	STEP TWO
+
+				Edit the Gemfile content (http://pastebin.com/AGMAxaag)
+
+				For this first cd to Myrottenpotatoes
+
+		~/Documents$ cd Myrottenpotatoes/
+		~/Documents/Myrottenpotatoes$ vim Gemfile
+
+				Press "esc" to stop editing, "shift+ZZ" to save and exit.
+
+	STEP THREE
+
+				Run "bundle install --without production" to checks if any gems specified in our Gemfile are missing and need to be installed.
+		
+		~/Documents/Myrottenpotatoes$ bundle install --without production
+
+				The following message tells everything is fine (Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.)
+
+				Start the app with rails server and point a browser to http://localhost:3000.
+
+NOTE: At this level it's normal to have a routing error if we point the browser to http://localhost:3000/movies
+
+				Type rake route to make sure that it prints nothing since there are no routes in our brand new app.
+
+		~/Documents/Myrottenpotatoes$ rake routes
+
+
+____________________________________________________________________________________________________________
+
+CREATION OF RESTful ROUTES FOR CRUD./ ROUTING
+____________________________________________________________________________________________________________
+1. Edit config/routes.rb (content:http://pastebin.com/piLDY4eM)
+
+	~/Documents/Myrottenpotatoes$ cd config/
+	~/Documents/Myrottenpotatoes/config$ vim routes.rb 
+
+		Delete "index.html" in public/index.html.
+
+	~/Documents/Myrottenpotatoes$ cd public/
+	~/Documents/Myrottenpotatoes/public$ rm index.html 
+		run rake routes again
+	~/Documents/Myrottenpotatoes$ rake routes
+
+		    movies GET    /movies(.:format)          {:action=>"index", :controller=>"movies"}
+			   POST   /movies(.:format)          {:action=>"create", :controller=>"movies"}
+		 new_movie GET    /movies/new(.:format)      {:action=>"new", :controller=>"movies"}
+		edit_movie GET    /movies/:id/edit(.:format) {:action=>"edit", :controller=>"movies"}
+		     movie GET    /movies/:id(.:format)      {:action=>"show", :controller=>"movies"}
+			   PUT    /movies/:id(.:format)      {:action=>"update", :controller=>"movies"}
+			   DELETE /movies/:id(.:format)      {:action=>"destroy", :controller=>"movies"}
+		      root        /                          {:to=>#<Proc:0xaf07a80@/usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/routing/redirectionSTTING UP .rb:85 (lambda)>}
+
+
+NOTE: web page will display "ActionController::RoutingError (uninitialized constant MoviesController):"
+
+________________________________________________________________________________________________________
+
+SETTING UP A DATABASE THAT WILL STORE THE MODELS./ INITIAL MIGRATION
+________________________________________________________________________________________________________
+
+DATABASES & MIGRATIONS
+-------------------------
+	~/Documents/Myrottenpotatoes$ rails generate migration create_movies
+      
+		invoke  active_record
+      		create    db/migrate/20121106201202_create_movies.rb
+ 
+	Edit the content with (http://pastebin.com/tmSkQX8b)
+
+	~/Documents/Myrottenpotatoes$ cd db/migrate
+	~/Documents/Myrottenpotatoes/db/migrate$ vim 20121106201202_create_movies.rb 
+	~/Documents/Myrottenpotatoes/db/migrate$ rake db:migrate
+
+		(in /home/ubuntu/Documents/Myrottenpotatoes)
+		==  CreateMovies: migrating ===================================================
+		-- create_table("movies")
+		   -> 0.0014s
+		==  CreateMovies: migrated (0.0016s) ==========================================
+
+		Assuming the migration succeeded, update the test database's schema by running "rake db:test:prepare"
+
+	~/Documents/Myrottenpotatoes/db/migrate$ rake db:test:prepare
+
+
+NOTE: web page will display "RoutingError (uninitialized constant MoviesController):"
+
+______________________________________________________________________________________________________
+
+CREATING MODELS
+_______________________________________________________________________________________________________
+
+MODELS: ACTIVE RECORD BASICS
+----------------------------
+
+Create a file app/models/movie.rb containing just these two lines:(http://pastebin.com/PbFnAGt1)
+
+	~/Documents/Myrottenpotatoes$ cd app/models/
+	~/Documents/Myrottenpotatoes/app/models$ ls
+	~/Documents/Myrottenpotatoes/app/models$ nano movie.rb
+	~/Documents/Myrottenpotatoes/app/models$ ls
+		movie.rb
+
+Run rails console, which gives you an interactive Ruby prompt like irb(main):001.0> with the Rails framework and all of your application’s classes already loaded. They are some basic ActiveRecord features that create some movies in our database, searching for them, changing them, and deleting them (CRUD).
+
+	~/Documents/Myrottenpotatoes$ rails console
+		Loading development environment (Rails 3.1.0)
+
+Here is the link containing the content to paste in the interactive Ruby prompt irb(main).(http://pastebin.com/2HETvZyz)
+
+
+NOTE: web page will display "RoutingError (uninitialized constant MoviesController):"
+
+___________________________________________________________________________________________________________
+
+SEEDING THE DATABASE WITH SOME MOVIES
+___________________________________________________________________________________________________________
+
+
+Adding initial data to the database is called seeding, and is distinct from migrations, which are for managing changes to the schema. 
+
+Copy the code here (http://pastebin.com/hNB7kpWz) into db/seeds.rb and run rake db:seed to run it.
+
+	~/Documents/Myrottenpotatoes$ ls
+
+		app        db       Gemfile.lock  My New Journal  README  Untitled Document 1~
+		config     doc      lib           public          script  vendor
+		config.ru  Gemfile  log           Rakefile        tmp
+
+	~/Documents/Myrottenpotatoes$ cd db
+	~/Documents/Myrottenpotatoes/db$ ls
+		
+		development.sqlite3  migrate  schema.rb  seeds.rb  test.sqlite3
+
+	~/Documents/Myrottenpotatoes/db$ vim seeds.rb 
+	~/Documents/Myrottenpotatoes/db$ rake db:seed
+	
+		(in /home/ubuntu/Documents/Myrottenpotatoes)
+
+	~/Documents/Myrottenpotatoes/db$ 
+
+
+NOTE: web page will display "RoutingError (uninitialized constant MoviesController):"
+
+___________________________________________________________________________________________________________
+
+CREATING SOME VIEWS TO SUPPORT THE CRUD ACTIONS
+___________________________________________________________________________________________________________
+
+CONTROLLERS & VIEWS
+--------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

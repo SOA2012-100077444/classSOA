@@ -479,6 +479,48 @@ NOTE: I created an untitled movie in the list that cannot be deleted.
 
 __________________________________________________________________________________________________________________
 
+PUSHING TO GITHUB
+__________________________________________________________________________________________________________________
+
+	~/Documents$ git init
+
+		Reinitialized existing Git repository in /home/ubuntu/Documents/.git/
+
+	~/Documents$ git add Myrottenpotatoes
+
+	~/Documents$ git commit -m "Updates"
+
+		[master 7097ebd] Updates
+
+ 		Committer: saasbook <saasbook@saasbook.(none)>
+		Your name and email address were configured automatically based
+		on your username and hostname. Please check that they are accurate.
+		You can suppress this message by setting them explicitly:
+
+		    git config --global user.name "Your Name"
+		    git config --global user.email you@example.com
+
+		After doing this, you may fix the identity used for this commit with:
+
+    		git commit --amend --reset-author
+
+		 10 files changed, 713 insertions(+), 1 deletion(-)
+		 create mode 100644 Myrottenpotatoes/app/views/layouts/application.html.haml
+		 create mode 100644 Myrottenpotatoes/app/views/movies/edit.html.haml
+		 create mode 100644 Myrottenpotatoes/app/views/movies/new.html.haml
+		 create mode 100644 Myrottenpotatoes/app/views/movies/show.html.haml
+		 create mode 100644 Myrottenpotatoes/app/views/movies/show.html.haml~
+
+	~/Documents$ git push origin master
+
+		Username for 'https://github.com': SOA2012-100077444
+		Password for 'https://SOA2012-100077444@github.com': 
+		To https://github.com/SOA2012-100077444/classSOA.git
+		   
+			a21dc5f..7097ebd  master -> master
+
+	~/Documents$ 
+
 
 
 

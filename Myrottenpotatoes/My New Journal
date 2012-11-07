@@ -190,33 +190,294 @@ Restart the application "rails server" in the app’s root directory and visit h
 
 NOTE: This time it displays the liste of all movies on our web page. However when we click on the links the following error displays: "Unknown action: The action 'show' could not be found for MoviesController"
 
+______________________________________________________________________________________________________________
+
+PUSHING MY WORK TO GITHUB
+______________________________________________________________________________________________________________
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd
+	~$ cd Documents
+
+	~/Documents$ git init
+
+		Reinitialized existing Git repository in /home/ubuntu/Documents/.git/
+
+	~/Documents$ git remote add origin https://github.com/SOA2012-100077444/classSOA.gitfatal: remote origin already exists.
+
+	~/Documents$ git add Myrottenpotatoes
+
+	~/Documents$ git commit -m "New Myrottenpotatoes"
+
+		[master a21dc5f] New Myrottenpotatoes
+ 		Committer: saasbook <saasbook@saasbook.(none)>
+		Your name and email address were configured automatically based
+		on your username and hostname. Please check that they are accurate.
+		You can suppress this message by setting them explicitly:
+
+		    git config --global user.name "Your Name"
+		    git config --global user.email you@example.com
+
+		After doing this, you may fix the identity used for this commit with:
+
+		    git commit --amend --reset-author
+
+ 		42 files changed, 1387 insertions(+)
+ 			
+			[...]
+
+	~/Documents$ git push origin master
+
+		Username for 'https://github.com': SOA2012-100077444
+		Password for 'https://SOA2012-100077444@github.com': 
+		To https://github.com/SOA2012-100077444/classSOA.git
+		  
+		 9d503e9..a21dc5f  master -> master
+
+	~/Documents$ 
+
+__________________________________________________________________________________________________________
+
+WRAPPING UP ALL THE VIEWS
+__________________________________________________________________________________________________________
+
+Delete the default content of the file app/views/layouts/application.html.erb created by the rails new
+and replace it by the following (http://pastebin.com/0RU47cUy)
+
+	~/Documents$ cd Myrottenpotatoes/app/views/layouts/
+	~/Documents/Myrottenpotatoes/app/views/layouts$ vim application.html.erb 
+	~/Documents/Myrottenpotatoes/app/views/layouts$ ls
+
+		application.html.erb
+
+Save this file as app/views/layouts/application.html.haml and delete the existing application.html.erb in that directory.
+
+	~/Documents/Myrottenpotatoes/app/views/layouts$ mv application.html.erb application.html.haml
+	~/Documents/Myrottenpotatoes/app/views/layouts$ ls
+
+		application.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/layouts$ 
+
+NOTE: The app/views/layouts/application.html.haml template is used to “wrap” action views by default, using yield.
+
+___________________________________________________________________________________________________________
 
 
+In app/controllers/movies_controller.rb, paste this content (http://pastebin.com/TESrHmkk)
+
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ ls
+
+		application_controller.rb  movies_controller.rb
+
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+	~/Documents/Myrottenpotatoes/app/controllers$ 
 
 
+In in app/views/movies/show.html.haml, paste (http://pastebin.com/hnmsYYB5)
+
+Note: The file "show.html.haml must be created.
+
+	~/Documents/Myrottenpotatoes/app/controllers$ cd ../views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ ls
+
+		index.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ nano show.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ ls
+
+		index.html.haml  show.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/movies$
 
 
+NOTE: At this level our web page displays the liste of all movies and active links.
+
+_____________________________________________________________________________________________________________
+
+CSS STYLING
+______________________________________________________________________________________________________________
+
+Copy the simple CSS styling herein (http://pastebin.com/LsLngdin) into app/assets/stylesheets/application.css.
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../assets/stylesheets/
+	~/Documents/Myrottenpotatoes/app/assets/stylesheets$ vim application.css 
+	~/Documents/Myrottenpotatoes/app/assets/stylesheets$
+
+NOTE: Our web page display is nicer. There a new format of the display.
+
+_______________________________________________________________________________________________________________
+
+ADDING MORE FUNCTIONALITIES/ THE FILL-IN FORM
+_______________________________________________________________________________________________________________
+
+A. NEW & CREATE
+----------------
+
+To add the functionality ’Add new movie’, we must do the following:
+
+	add (http://pastebin.com/6wLiit6M)to the end of index.html.haml (in app/views/movies/)
+	add (http://pastebin.com/uFdnJNmB) to movies_controller.rb (in app/controllers/)
+	create a file "new.html.haml" in app/views/movies/new.html.haml and paste (http://pastebin.com/w7jdzawW)
+
+	~/Documents/Myrottenpotatoes/app/assets$ cd ../views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ ls
+
+		index.html.haml  show.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim index.html.haml 
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ ls
+
+		application_controller.rb  movies_controller.rb
+
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+	~/Documents/Myrottenpotatoes/app/controllers$ cd ..
+	~/Documents/Myrottenpotatoes/app$ cd views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ nano new.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ ls
+
+		index.html.haml  new.html.haml  show.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
 
 
+NOTE: The function "Add New Movie" is added to our web page
+
+___________________________________________________________________________________________________________________________
+
+REDIRECTING & Flash
+___________________________________________________________________________________________________________________________
+
+A. REDIRECTING
+--------------
+
+Instead of creating a view in "app/views/movies/create.html.haml" containing a nice message informing the user of success, what most web apps do is return the user to a more useful page — say, the home page, or the list of all movies—but they display a success message as an added element on that page to let the user know that their changes were successfully saved.
+
+Rails makes it easy to implement this behavior. To send the user to a different page, "redirect_to" causes a controller action to end not by rendering a view, but by restarting a whole new request to a different action.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+To do it, modify movies_controller.rb in "Myrottenpotatoes/app/controllers" (http://pastebin.com/FFgBP1Jy)
 
  
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+	~/Documents/Myrottenpotatoes/app/controllers$ 
 
 
+Now, test out this behavior by reloading the movie listing page, clicking Add New Movie, and submitting the form.
 
+
+NOTE: Successfully add and save changes, then brings us back on the listing page of movies.
+ 
+_____________________________________________________________________________________________________________________________
+
+B. FLASH
+------------
+
+The flash is a special method that quacks like a hash, but persists from the current request to the next.  
+By convention, flash[:notice] is used for informational messages and flash[:warning] is used for messages about things going wrong.
+
+To do it, modify (add) movies_controller.rb in "Myrottenpotatoes/app/controllers" (http://pastebin.com/N1n4Pkr0)
+
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+	~/Documents/Myrottenpotatoes/app/controllers
+
+NOTE: What happened? Even though creating a new movie appears to work (the new movie shows up in the list of all movies), there’s no sign of the helpful message we just created. That’s because we didn’t actually modify any of the views to display that message!
+
+
+But which view should we modify for it to happen?
+
+The answer is "application.html.haml" the template used to “wrap” all views by default in app/views/layouts/.
+Add the four lines of code in (http://pastebin.com/bW1FzEr1) between "%body" and "=yield" to display any pending flash messages at the beginning of the page body.
+
+	~/Documents/Myrottenpotatoes/app/controllers$ cd ../views/layouts/
+	~/Documents/Myrottenpotatoes/app/views/layouts$ vim application.html.haml 
+	~/Documents/Myrottenpotatoes/app/views/layouts$ 
+
+NOTE: THE WARNING MESSAGES DO NOT DISPLAY
+
+____________________________________________________________________________________________________________________________________________
+
+FINISHING CRUD: EDIT/UPDATE AND DESTROY
+___________________________________________________________________________________________________________________________________________________________
+
+
+A. EDIT/UPDATE
+---------------
+
+Like create, this requires two actions:
+	1.To display the form with editable information (edit) 
+	2. To accept the form submission and apply the updated information (update).
+
+
+Modify the show.html.haml view so its last two lines match the code within (http://pastebin.com/ZD1y6TYc):
+
+	~/Documents/Myrottenpotatoes/app/views/layouts$ cd ../movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim show.html.haml 
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
+
+Create a new file "edit.html.haml" in /app/views/movies/ with (http://pastebin.com/PhapSLEN)
+
+Here are the actual controller methods we need to add to movies_controller.rb (http://pastebin.com/jdTS5P7Q)
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ ls
+
+		index.html.haml  new.html.haml  show.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ nano edit.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ rake routes
+
+		(in /home/ubuntu/Documents/Myrottenpotatoes)
+
+		    movies GET    /movies(.:format)          {:action=>"index", :controller=>"movies"}
+			   POST   /movies(.:format)          {:action=>"create", :controller=>"movies"}
+		 new_movie GET    /movies/new(.:format)      {:action=>"new", :controller=>"movies"}
+		edit_movie GET    /movies/:id/edit(.:format) {:action=>"edit", :controller=>"movies"}
+		     movie GET    /movies/:id(.:format)      {:action=>"show", :controller=>"movies"}
+			   PUT    /movies/:id(.:format)      {:action=>"update", :controller=>"movies"}
+			   DELETE /movies/:id(.:format)      {:action=>"destroy", :controller=>"movies"}
+		      root        /                          {:to=>#<Proc:0xa8f11a0@/usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/routing/redirection.rb:85 (lambda)>}
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+	~/Documents/Myrottenpotatoes/app/controllers$ 
+ 
+
+___________________________________________________________________________________________________________________
+
+B. DESTROY
+-----------
+
+Add the following lines to /app/controllers/movies_controller.rb to make it happen: (http://pastebin.com/8ZYbFUcb)
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+ 
+Add the following lines to /app/views/movies$ vim show.html.haml: (http://pastebin.com/Cr8EXQaH)
+
+	~/Documents/Myrottenpotatoes/app/controllers$ cd ..
+	~/Documents/Myrottenpotatoes/app$ cd views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim show.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
+
+NOTE that this adds a link for deletion. 
+     To create a button for deletion input instead the following (http://pastebin.com/mTXuE5up)
+
+	~/Documents/Myrottenpotatoes/app$ cd views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim show.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
+
+NOTE: Type "button_to" with we need buttons and "link_to" if we need links
+
+NOTE: I created an untitled movie in the list that cannot be deleted.
+
+__________________________________________________________________________________________________________________
 
 
 

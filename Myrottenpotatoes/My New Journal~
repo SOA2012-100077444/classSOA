@@ -398,20 +398,86 @@ Add the four lines of code in (http://pastebin.com/bW1FzEr1) between "%body" and
 	~/Documents/Myrottenpotatoes/app/views/layouts$ vim application.html.haml 
 	~/Documents/Myrottenpotatoes/app/views/layouts$ 
 
+NOTE: THE WARNING MESSAGES DO NOT DISPLAY
+
+____________________________________________________________________________________________________________________________________________
+
+FINISHING CRUD: EDIT/UPDATE AND DESTROY
+___________________________________________________________________________________________________________________________________________________________
 
 
+A. EDIT/UPDATE
+---------------
 
+Like create, this requires two actions:
+	1.To display the form with editable information (edit) 
+	2. To accept the form submission and apply the updated information (update).
+
+
+Modify the show.html.haml view so its last two lines match the code within (http://pastebin.com/ZD1y6TYc):
+
+	~/Documents/Myrottenpotatoes/app/views/layouts$ cd ../movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim show.html.haml 
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
+
+Create a new file "edit.html.haml" in /app/views/movies/ with (http://pastebin.com/PhapSLEN)
+
+Here are the actual controller methods we need to add to movies_controller.rb (http://pastebin.com/jdTS5P7Q)
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ ls
+
+		index.html.haml  new.html.haml  show.html.haml
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ nano edit.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ rake routes
+
+		(in /home/ubuntu/Documents/Myrottenpotatoes)
+
+		    movies GET    /movies(.:format)          {:action=>"index", :controller=>"movies"}
+			   POST   /movies(.:format)          {:action=>"create", :controller=>"movies"}
+		 new_movie GET    /movies/new(.:format)      {:action=>"new", :controller=>"movies"}
+		edit_movie GET    /movies/:id/edit(.:format) {:action=>"edit", :controller=>"movies"}
+		     movie GET    /movies/:id(.:format)      {:action=>"show", :controller=>"movies"}
+			   PUT    /movies/:id(.:format)      {:action=>"update", :controller=>"movies"}
+			   DELETE /movies/:id(.:format)      {:action=>"destroy", :controller=>"movies"}
+		      root        /                          {:to=>#<Proc:0xa8f11a0@/usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/routing/redirection.rb:85 (lambda)>}
+
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+	~/Documents/Myrottenpotatoes/app/controllers$ 
  
 
+___________________________________________________________________________________________________________________
 
+B. DESTROY
+-----------
 
+Add the following lines to /app/controllers/movies_controller.rb to make it happen: (http://pastebin.com/8ZYbFUcb)
 
+	~/Documents/Myrottenpotatoes/app/views/movies$ cd ..
+	~/Documents/Myrottenpotatoes/app/views$ cd ../controllers/
+	~/Documents/Myrottenpotatoes/app/controllers$ vim movies_controller.rb 
+ 
+Add the following lines to /app/views/movies$ vim show.html.haml: (http://pastebin.com/Cr8EXQaH)
 
+	~/Documents/Myrottenpotatoes/app/controllers$ cd ..
+	~/Documents/Myrottenpotatoes/app$ cd views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim show.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
 
+NOTE that this adds a link for deletion. 
+     To create a button for deletion input instead the following (http://pastebin.com/mTXuE5up)
 
+	~/Documents/Myrottenpotatoes/app$ cd views/movies/
+	~/Documents/Myrottenpotatoes/app/views/movies$ vim show.html.haml
+	~/Documents/Myrottenpotatoes/app/views/movies$ 
 
+NOTE: Type "button_to" with we need buttons and "link_to" if we need links
 
+NOTE: I created an untitled movie in the list that cannot be deleted.
 
+__________________________________________________________________________________________________________________
 
 
 

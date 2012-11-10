@@ -540,6 +540,111 @@ Here are the steps I followed to delete my old version of "myrottenpotatoes" fil
 	~/Documents$ 
 
 ______________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________
+
+RUNNING CUCUMBER AND CAPYBARA
+______________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________
+
+DECLARING THAT OUR APP. DEPENDS ON THE GEM.
+_______________________________________________________________________________________________________________________
+
+Add the following lines (http://pastebin.com/MMZdRmB3) to Gemfile in /Documents/Myrottenpotatoes/
+
+Once the Gemfile modified, we must run "bundle install --without production". If all goes well it'll show “Your bundle is complete.”
+
+
+	~/Documents/Myrottenpotatoes$ rails generate cucumber:install capybara
+		WARNING: Cucumber-rails required outside of env.rb.  The rest of loading is being defered until env.rb is called.
+		  To avoid this warning, move 'gem cucumber-rails' under only group :test in your Gemfile
+		      create  config/cucumber.yml
+		      create  script/cucumber
+		       chmod  script/cucumber
+		      create  features/step_definitions
+		      create  features/support
+		      create  features/support/env.rb
+		       exist  lib/tasks
+		      create  lib/tasks/cucumber.rake
+			gsub  config/database.yml
+			gsub  config/database.yml
+		       force  config/database.yml
+	~/Documents/Myrottenpotatoes$ rails generate cucumber_rails_training_wheels:install
+		WARNING: Cucumber-rails required outside of env.rb.  The rest of loading is being defered until env.rb is called.
+		  To avoid this warning, move 'gem cucumber-rails' under only group :test in your Gemfile
+		       exist  features/step_definitions
+		      create  features/step_definitions/web_steps.rb
+		       exist  features/support
+		      create  features/support/paths.rb
+		      create  features/support/selectors.rb
+	~/Documents/Myrottenpotatoes$ 
+
+____________________________________
+
+INITIALIZING THE TEST DATABASE
+____________________________________
+
+Run "rake db:test:prepare"
+
+PROBLEM: "rake db:test:prepare" command not found.
+
+SOLUTION:
+
+	~/Documents/classSOA/Myrottenpotatoes$ sudo gem install test-unit-runner-gtk2
+
+	~/Documents/Myrottenpotatoes$ bundle install --without production
+
+	~/Documents/Myrottenpotatoes$ rails generate cucumber:install capybara
+   
+	~/Documents/Myrottenpotatoes$ rails generate cucumber_rails_training_wheels:install
+       
+	~/Documents/Myrottenpotatoes$ rake db:test:prepare
+
+	~/Documents/Myrottenpotatoes$ 
+
+NOTE: It returns nothing. So everything is fine
+___________________________________________________________________________________________________________________________________________
+
+Create a new file in /Myrottenpotatoes/features named "AddMovie.feature" and paste in (http://pastebin.com/mqQncg1s)
+
+Run cucumber
+
+	~/Documents/Myrottenpotatoes$ cucumber
+
+		"You have already activated activesupport 3.2.8, but your Gemfile requires activesupport 3.1.0. Using bundle exec may solve this. (Gem::LoadError)"
+
+PROBLEM RUNNING CUCUMBER
+	
+	Gem::LoadError
+	
+SOLUTION:
+	~/Documents/Myrottenpotatoes$ bundle exec cucumber
+
+	~/Documents/Myrottenpotatoes$ 
+
+NOTE: Always use "bundle exec cucumber" to run cucumber. We can delete the delete our rails3tutorial gemset and re-create it again with the following:
+
+	rvm gemset delete rails3tutorial
+	rvm 1.9.2-p290@rails3tutorial --create
+
+But using "bundle exec cucumber" is in case we have multiple projects, and probably many different versions of many different gems. we should always use bundle exec to do things like execute rake tasks, run cucumer features and other unit tests, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

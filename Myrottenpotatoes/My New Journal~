@@ -403,8 +403,7 @@ NOTE: THE WARNING MESSAGES DO NOT DISPLAY
 ____________________________________________________________________________________________________________________________________________
 
 FINISHING CRUD: EDIT/UPDATE AND DESTROY
-___________________________________________________________________________________________________________________________________________________________
-
+_____________________________________________________________________________________________________________________________________________
 
 A. EDIT/UPDATE
 ---------------
@@ -520,6 +519,95 @@ ________________________________________________________________________________
 			a21dc5f..7097ebd  master -> master
 
 	~/Documents$ 
+
+_____________________________________________________________________________________________________________________
+
+DELETING FILES FROM GITHUB
+_____________________________________________________________________________________________________________________
+
+Here are the steps I followed to delete my old version of "myrottenpotatoes" file.
+
+	~/Documents$ git init
+
+	~/Documents$ git add myrottenpotatoes/
+
+	~/Documents$ git rm -r myrottenpotatoes/
+
+	~/Documents$ git commit -m "changes"
+
+	~/Documents$ git push origin master 
+
+	~/Documents$ 
+
+______________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________
+
+RUNNING CUCUMBER AND CAPYBARA
+______________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________
+
+DECLARING THAT OUR APP. DEPENDS ON THE GEM.
+_______________________________________________________________________________________________________________________
+
+Add the following lines (http://pastebin.com/MMZdRmB3) to Gemfile in /Documents/Myrottenpotatoes/
+
+Once the Gemfile modified, we must run "bundle install --without production". If all goes well it'll show “Your bundle is complete.”
+
+
+	~/Documents/Myrottenpotatoes$ rails generate cucumber:install capybara
+		WARNING: Cucumber-rails required outside of env.rb.  The rest of loading is being defered until env.rb is called.
+		  To avoid this warning, move 'gem cucumber-rails' under only group :test in your Gemfile
+		      create  config/cucumber.yml
+		      create  script/cucumber
+		       chmod  script/cucumber
+		      create  features/step_definitions
+		      create  features/support
+		      create  features/support/env.rb
+		       exist  lib/tasks
+		      create  lib/tasks/cucumber.rake
+			gsub  config/database.yml
+			gsub  config/database.yml
+		       force  config/database.yml
+	~/Documents/Myrottenpotatoes$ rails generate cucumber_rails_training_wheels:install
+		WARNING: Cucumber-rails required outside of env.rb.  The rest of loading is being defered until env.rb is called.
+		  To avoid this warning, move 'gem cucumber-rails' under only group :test in your Gemfile
+		       exist  features/step_definitions
+		      create  features/step_definitions/web_steps.rb
+		       exist  features/support
+		      create  features/support/paths.rb
+		      create  features/support/selectors.rb
+	~/Documents/Myrottenpotatoes$ 
+
+____________________________________
+
+INITIALIZING THE TEST DATABASE
+____________________________________
+
+Run "rake db:test:prepare"
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -585,12 +585,48 @@ ____________________________________
 
 Run "rake db:test:prepare"
 
- 
+PROBLEM: "rake db:test:prepare" command not found.
 
+SOLUTION:
 
+	~/Documents/classSOA/Myrottenpotatoes$ sudo gem install test-unit-runner-gtk2
 
+	~/Documents/Myrottenpotatoes$ bundle install --without production
 
+	~/Documents/Myrottenpotatoes$ rails generate cucumber:install capybara
+   
+	~/Documents/Myrottenpotatoes$ rails generate cucumber_rails_training_wheels:install
+       
+	~/Documents/Myrottenpotatoes$ rake db:test:prepare
 
+	~/Documents/Myrottenpotatoes$ 
+
+NOTE: It returns nothing. So everything is fine
+___________________________________________________________________________________________________________________________________________
+
+Create a new file in /Myrottenpotatoes/features named "AddMovie.feature" and paste in (http://pastebin.com/mqQncg1s)
+
+Run cucumber
+
+	~/Documents/Myrottenpotatoes$ cucumber
+
+		"You have already activated activesupport 3.2.8, but your Gemfile requires activesupport 3.1.0. Using bundle exec may solve this. (Gem::LoadError)"
+
+PROBLEM RUNNING CUCUMBER
+	
+	Gem::LoadError
+	
+SOLUTION:
+	~/Documents/Myrottenpotatoes$ bundle exec cucumber
+
+	~/Documents/Myrottenpotatoes$ 
+
+NOTE: Always use "bundle exec cucumber" to run cucumber. We can delete the delete our rails3tutorial gemset and re-create it again with the following:
+
+	rvm gemset delete rails3tutorial
+	rvm 1.9.2-p290@rails3tutorial --create
+
+But using "bundle exec cucumber" is in case we have multiple projects, and probably many different versions of many different gems. we should always use bundle exec to do things like execute rake tasks, run cucumer features and other unit tests, etc.
 
 
 

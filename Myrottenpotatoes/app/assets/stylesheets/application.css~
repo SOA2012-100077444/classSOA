@@ -23,12 +23,12 @@ div#main {
 }
 a {
   background: transparent;
-  color: blue;
+  color: maroon;
   text-decoration: underline;
   font-weight: bold;
 }
 h1 {
-  color: blue;
+  color: maroon;
   font-size: 150%;
   font-style: italic;
   display: block;
@@ -38,7 +38,7 @@ h1 {
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
-  background-color: blue;
+  background-color: maroon;
   color: white;
   border-bottom: 4px solid gold;
   font-size: 2em;
@@ -72,5 +72,5 @@ form label {
   display: block;
   line-height: 25px;
   font-weight: bold;
-  color: blue;
+  color: maroon;
 }

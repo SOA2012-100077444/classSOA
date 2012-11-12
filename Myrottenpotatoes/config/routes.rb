@@ -1,7 +1,13 @@
 Myrottenpotatoes::Application.routes.draw do
   resources :movies
+  post '/movies/search_tmdb'
   root :to => redirect('/movies')
 end
+
+# add to routes.rb, just before or just after 'resources :movies' :
+
+# Route that posts 'Search TMDb' form
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

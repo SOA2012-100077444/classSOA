@@ -13,7 +13,12 @@ class MoviesController < ApplicationController
   def new
     # default: render 'new' template
   end
+def empty?
+      return @records.empty? if loaded?
 
+      c = count
+      c.respond_to?(:zero?) ? c.zero? : c.empty?
+    end
   def create
    @movie = Movie.create!(params[:movie])
    flash[:notice] = "#{@movie.title} was successfully created."

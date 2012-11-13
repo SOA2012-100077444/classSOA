@@ -12,7 +12,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: White;
+  background: white;
   color: DarkSlateGrey;
   font-family: Tahoma, Verdana, sans-serif
   font-size: 10pt;
@@ -23,12 +23,12 @@ div#main {
 }
 a {
   background: transparent;
-  color: maroon;
+  color: blue;
   text-decoration: underline;
   font-weight: bold;
 }
 h1 {
-  color: maroon;
+  color: green;
   font-size: 150%;
   font-style: italic;
   display: block;
@@ -38,7 +38,7 @@ h1 {
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
-  background-color: maroon;
+  background-color: blue;
   color: white;
   border-bottom: 4px solid gold;
   font-size: 2em;
@@ -51,9 +51,9 @@ table#movies {
   border-bottom: 2px solid black;
 }
 table#movies th {
-  border: 2px solid white;
+  border: 2px solid red;
   font-weight: bold;
-  background-color: wheat;
+  background-color: skyblue;
 }
 table#movies th, table#movies td {
   padding: 4px;
@@ -72,5 +72,5 @@ form label {
   display: block;
   line-height: 25px;
   font-weight: bold;
-  color: maroon;
+  color: blue;
 }

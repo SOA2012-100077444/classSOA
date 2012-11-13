@@ -19,7 +19,7 @@ module NavigationHelpers
       '/movies'
     when /^the Create New Movie page/
       '/movies/new'
-    when /^search TMDb for a movie/
+    when /^the "Search Results" page/
       '/movies'
 
     # Add more mappings here.

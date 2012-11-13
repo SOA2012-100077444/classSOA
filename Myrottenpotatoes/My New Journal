@@ -629,6 +629,132 @@ NOTE: Always use "bundle exec cucumber" to run cucumber. We can delete the delet
 But using "bundle exec cucumber" is in case we have multiple projects, and probably many different versions of many different gems. we should always use bundle exec to do things like execute rake tasks, run cucumer features and other unit tests, etc.
 
 
+Create a file features/search_tmdb.feature containing this code(http://pastebin.com/Qc4rppVL).
+ 
+	~/Documents/Myrottenpotatoes$ cd features/
+	~/Documents/Myrottenpotatoes/features$ ls
+		AddMovie.feature  step_definitions  support
+	~/Documents/Myrottenpotatoes/features$ nano search_tmdb.feature
+..
+	~/Documents/Myrottenpotatoes$ bundle exec cucumber
+		Using the default profile...
+		Feature: User can manually add movie
+
+		  Scenario: Add a movie                              # features/AddMovie.feature:3
+		    Given I am on the RottenPotatoes home page       # features/step_definitions/web_steps.rb:44
+		    When I follow "Add new movie"                    # features/step_definitions/web_steps.rb:56
+		    Then I should be on the Create New Movie page    # features/step_definitions/web_steps.rb:230
+		    When I fill in "Title" with "Men In Black"       # features/step_definitions/web_steps.rb:60
+		    And I select "PG-13" from "Rating"               # features/step_definitions/web_steps.rb:85
+		    And I press "Save Changes"                       # features/step_definitions/web_steps.rb:52
+		    Then I should be on the RottenPotatoes home page # features/step_definitions/web_steps.rb:230
+		    And I should see "Men In Black"                  # features/step_definitions/web_steps.rb:105
+
+			[...]
+
+		2 scenarios (1 failed, 1 passed)
+		14 steps (1 failed, 4 skipped, 9 passed)
+		0m2.088s
+
+_________________________________________________________________________________________________________________________________________
+
+CREATING THE SAD PATH
+________________________________________________________________________________________________________________________________________
+
+	~/Documents/Myrottenpotatoes$ 
+
+Then do the following 3 things:
+
+	1. Add the following code to end of app/views/movies/index.html.haml (http://pastebin.com/viZTPxGN)
+	2. Add to movies_controller.rb, anywhere inside (http://pastebin.com/yVNvBKNe)
+	3. Add to routes.rb, just before or just after ’resources :movies’ (http://pastebin.com/tCHwFER8)
+
+NOTE 1: Line 3 is the text that allows Then I should see “Search TMDb for a movie” to pass.The remaining lines create the fill-in form;
+
+NOTE 2: Two things are worth noting. First, as with any user interaction in a view, we need a controller action that will handle that interaction. In this case the interaction is submitting the form with search keywords. Line 5 says that when the form is submitted, the controller action search_tmdb will receive the form submission. That code doesn’t exist yet, so we had to choose a descriptive name for the action. The second thing to note is the use of the HTML label tag. Figure 2.14 in Chapter 2 tells us that lines 7 and 8 will expand to the following HTML markup.
+
+
+Then run cucumber
+
+	~/Documents/Myrottenpotatoes$ bundle exec cucumber
+		Using the default profile...
+		Feature: User can manually add movie
+
+		  Scenario: Add a movie                              # features/AddMovie.feature:3
+		    Given I am on the RottenPotatoes home page       # features/step_definitions/web_steps.rb:44
+		    When I follow "Add new movie"                    # features/step_definitions/web_steps.rb:56
+		    Then I should be on the Create New Movie page    # features/step_definitions/web_steps.rb:230
+		    When I fill in "Title" with "Men In Black"       # features/step_definitions/web_steps.rb:60
+		    And I select "PG-13" from "Rating"               # features/step_definitions/web_steps.rb:85
+		    And I press "Save Changes"                       # features/step_definitions/web_steps.rb:52
+		    Then I should be on the RottenPotatoes home page # features/step_definitions/web_steps.rb:230
+		    And I should see "Men In Black"                  # features/step_definitions/web_steps.rb:105
+
+		Feature: User can add movie by searching for it in The Movie Database (TMDb)
+		  
+		  As a movie fan
+		  So that I can add new movies without manual tedium
+		  I want to add movies by looking up their details in TMDb
+
+		  Scenario: Try to add nonexistent movie (sad path)                       # features/search_tmdb.feature:7
+		    Given I am on the RottenPotatoes home page                            # features/step_definitions/web_steps.rb:44
+		    Then I should see "Search TMDb for a movie"                           # features/step_definitions/web_steps.rb:105
+		    When I fill in "Search Terms" with "Movie That Does Not Exist"        # features/step_definitions/web_steps.rb:60
+		    And I press "Search TMDb"                                             # features/step_definitions/web_steps.rb:52
+		    Then I should be on the RottenPotatoes home page                      # features/step_definitions/web_steps.rb:230
+		    And I should see "'Movie That Does Not Exist' was not found in TMDb." # features/step_definitions/web_steps.rb:105
+
+		2 scenarios (2 passed)
+		14 steps (14 passed)
+		0m1.956s
+
+NOTE: Below a long string of information, the first line mentionning an argument error. Is it fine to disregard it?
+
+		/usr/local/lib/ruby/gems/1.9.1/gems/cucumber-rails-1.3.0/lib/cucumber/rails/world.rb:13:in `initialize': wrong number of arguments (1 for 0) (ArgumentError)
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/testsuitecreator.rb:38:in `new'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/testsuitecreator.rb:38:in `append_test'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/testsuitecreator.rb:32:in `create'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/testcase.rb:138:in `suite'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector.rb:60:in `block in add_test_case'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector.rb:59:in `each'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector.rb:59:in `add_test_case'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector.rb:35:in `block in add_test_cases'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector.rb:34:in `each'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector.rb:34:in `add_test_cases'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/collector/descendant.rb:13:in `collect'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/autorunner.rb:83:in `block in <class:AutoRunner>'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/autorunner.rb:386:in `[]'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/autorunner.rb:386:in `run'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit/autorunner.rb:58:in `run'
+			from /usr/local/lib/ruby/gems/1.9.1/gems/test-unit-2.5.2/lib/test/unit.rb:501:in `block in <top (required)>'
+
+
+NOTE: PUSHING TO GITHUB.
+
+NOTE 2: Our web page was added new features."Search TMDb for a movie" and "Search Terms"
+
+WASH CUCUMBER PART 2 SCREENCAST ________________________________________________________________________________________________________________________________________
+
+CREATING THE HAPPY PATH
+________________________________________________________________________________________________________________________________________
+
+Modify features/search_tmdb.feature to match the figure and once again run cucumber.
+
+Mapping error occured. To solve it, as per cucumber part 2 screencast, we copy here "the 'Search Results' page", paste it in path.rb and do the mapping difining the routes, here '/movies'.
+
+Add (http://pastebin.com/JQkEUVDJ) to AddMovie.feature in Myrottenpotatoes/features/
+
+	~/Documents/Myrottenpotatoes/features$ vim AddMovie.feature 
+	~/Documents/Myrottenpotatoes/features$
+
+An alternative to the previous way is the following (http://pastebin.com/JZsT3ddv), relatively informal but uses terms and concepts specific to our application, rather than generic terms and concepts related to the implementation of the user interface.
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,22 @@
+%h2 All Movies
+
+%table#movies
+  %thead
+    %tr
+      %th Movie Title
+      %th Rating
+      %th Release Date
+      %th More Info
+  %tbody
+
+      = render :partial =>'movie', :collection =>@movies
+
+= link_to 'Add new movie', new_movie_path
+
+%h1 Search TMDb for a movie
+
+= form_tag :action => 'search_tmdb' do
+
+  %label{:for => 'search_terms'} Search Terms
+  = text_field_tag 'search_terms'
+  = submit_tag 'Search TMDb'

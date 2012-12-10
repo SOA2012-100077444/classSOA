@@ -1,0 +1,5 @@
+My first regex.
+
+http://rubular.com/r/Ea4AQjDN0A
+
+\when(\sI|\she|\sthey|)(\sam|\sis|\sare|) log(|ged|s)\sin

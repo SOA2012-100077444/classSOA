@@ -24,7 +24,7 @@ gem 'jquery-rails'
 gem 'ruby-tmdb'
 # Deploy with Capistrano
 # gem 'capistrano'
-gem 'omniauth-twitter'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 

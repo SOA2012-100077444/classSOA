@@ -553,30 +553,21 @@ Add the following lines (http://pastebin.com/MMZdRmB3) to Gemfile in /Documents/
 
 Once the Gemfile modified, we must run "bundle install --without production". If all goes well it'll show “Your bundle is complete.”
 
+THEN INSTALL CAPYBARA
 
 	~/Documents/Myrottenpotatoes$ rails generate cucumber:install capybara
 		WARNING: Cucumber-rails required outside of env.rb.  The rest of loading is being defered until env.rb is called.
 		  To avoid this warning, move 'gem cucumber-rails' under only group :test in your Gemfile
-		      create  config/cucumber.yml
-		      create  script/cucumber
-		       chmod  script/cucumber
-		      create  features/step_definitions
-		      create  features/support
-		      create  features/support/env.rb
-		       exist  lib/tasks
-		      create  lib/tasks/cucumber.rake
-			gsub  config/database.yml
-			gsub  config/database.yml
-		       force  config/database.yml
+		      
 	~/Documents/Myrottenpotatoes$ rails generate cucumber_rails_training_wheels:install
 		WARNING: Cucumber-rails required outside of env.rb.  The rest of loading is being defered until env.rb is called.
 		  To avoid this warning, move 'gem cucumber-rails' under only group :test in your Gemfile
-		       exist  features/step_definitions
-		      create  features/step_definitions/web_steps.rb
-		       exist  features/support
-		      create  features/support/paths.rb
-		      create  features/support/selectors.rb
+
 	~/Documents/Myrottenpotatoes$ 
+
+SOLVING THE WARNING ISSUE:
+
+In Gemfile, change the entry to: 	gem 'cucumber-rails', :require => false
 
 ____________________________________
 
@@ -601,7 +592,11 @@ SOLUTION:
 
 	~/Documents/Myrottenpotatoes$ 
 
-NOTE: It returns nothing. So everything is fine
+NOTE: It returns nothing. So I suppose everything is fine
+
+Then type "bundle exec cucumber"
+
+Watch screencast http://vimeo.com/34754747
 ___________________________________________________________________________________________________________________________________________
 
 Create a new file in /Myrottenpotatoes/features named "AddMovie.feature" and paste in (http://pastebin.com/mqQncg1s)
@@ -621,7 +616,7 @@ SOLUTION:
 
 	~/Documents/Myrottenpotatoes$ 
 
-NOTE: Always use "bundle exec cucumber" to run cucumber. We can delete the delete our rails3tutorial gemset and re-create it again with the following:
+NOTE: Always use "bundle exec cucumber" to run cucumber. We can delete our rails3tutorial gemset and re-create it again with the following:
 
 	rvm gemset delete rails3tutorial
 	rvm 1.9.2-p290@rails3tutorial --create
@@ -733,14 +728,14 @@ NOTE: PUSHING TO GITHUB.
 
 NOTE 2: Our web page was added new features."Search TMDb for a movie" and "Search Terms"
 
-WASH CUCUMBER PART 2 SCREENCAST ________________________________________________________________________________________________________________________________________
+WATCH CUCUMBER PART 2 SCREENCAST (http://vimeo.com/34754766) ________________________________________________________________________________________________________________________________________
 
 CREATING THE HAPPY PATH
 ________________________________________________________________________________________________________________________________________
 
 Modify features/search_tmdb.feature to match the figure and once again run cucumber.
 
-Mapping error occured. To solve it, as per cucumber part 2 screencast, we copy here "the 'Search Results' page", paste it in path.rb and do the mapping difining the routes, here '/movies'.
+Mapping error occured. To solve it, as per cucumber part 2 screencast, we copy here "the 'Search Results' page", paste it in path.rb and do the mapping defining the routes, here '/movies'.
 
 Add (http://pastebin.com/JQkEUVDJ) to AddMovie.feature in Myrottenpotatoes/features/
 
@@ -748,6 +743,139 @@ Add (http://pastebin.com/JQkEUVDJ) to AddMovie.feature in Myrottenpotatoes/featu
 	~/Documents/Myrottenpotatoes/features$
 
 An alternative to the previous way is the following (http://pastebin.com/JZsT3ddv), relatively informal but uses terms and concepts specific to our application, rather than generic terms and concepts related to the implementation of the user interface.
+
+
+Then as stated by text book Unsurprisingly, the step at line 24 failed.
+
+Add to movie_steps.rb (http://pastebin.com/rky95ycT)
+
+NOTE: Fig 9 & 8 remained unused.
+
+_____________________________________________
+
+SETTING UP API KEY (Chap 6)
+_____________________________________________
+
+
+Watch Screencast 6.1.1: Using the TMDb API and apply for APIKey.
+
+My APIKey: 9ece17550a94abab5b77fd0c56e4873d 
+
+
+Watch Screencast 6.1.2: Simplified use of the TMDb API with the ruby-tmdb gem
+
+Fire up ruby interpreter and input commands as per screencast 6.1.2 
+		(require 'rubygems'
+		require 'ruby-tmdb')
+
+In the group :test block in the Gemfile, add gem ’rspec-rails’
+
+Run bundle install --without production
+
+Run rails generate rspec:install to set up the files and directories RSpec needs.
+
+  
+	~/Documents/Myrottenpotatoes$ bundle install --without 
+	~/Documents/Myrottenpotatoes$ rails generate rspec:install
+		   identical  .rspec
+		       exist  spec
+		   identical  spec/spec_helper.rb
+	~/Documents/Myrottenpotatoes$ 
+
+Add in movie.rb the following codes (http://pastebin.com/1C08dxAu)
+
+
+____________________________________________________________________________________________________________________________
+
+7.1 DRYing Out MVC: Partials, Validations and Filters
+_________________________________________________________________________________________________________________________
+
+PARTIAL
+______________________
+
+1. Create a file app/views/movies/_movie_form.html.haml (the partial)and paste in the following (http://pastebin.com/G1c32mQW)
+
+2. Replace the content of app/views/movies/new.html.haml by (http://pastebin.com/ZNKAws0T)
+
+3. Replace the content of app/views/movies/edit.html.haml by (http://pastebin.com/pRWLLbNk)
+
+NOTE: Partials names must begin with an underscore as "_movie_form.html.haml"
+
+
+Add in app/models/movie.rb the following codes (http://pastebin.com/2GtWshSb)
+
+
+THEN TRY THE FOLLOWING IN RAILS CONSOLE
+
+	# try in console:
+	m = Movie.new(:title => '', :rating => 'RG', :release_date => '1929-01-01')
+	# force validation checks to be performed:
+	m.valid?  # => false
+	m.errors[:title] # => ["can't be blank"]
+	m.errors[:rating] # => ["is not included in the list"]
+	m.errors[:release_date] # => ["must be 1930 or later"]
+	m.errors.full_messages # => ["Title can't be blank", "Rating is not included in the list", "Release date must be 1930 or later"]
+
+NOTE: There is no "grandfathered" NameError anymore. I don't know why.
+
+NOW modify "create" and "update" controller actions to match the figure in (http://pastebin.com/CM6ntZzK).
+
+AND then try adding a movie that violates one or more of the validations.
+
+
+INSERT at the top of _movie_form.html.haml (http://pastebin.com/YGqvV8pg)
+
+Watch screen cats 7.1.1 (http://vimeo.com/34754932) How model validations interact with controllers and views
+
+
+NOTE: ROUTING ERROR. I DON'T GET THE EXPECTED ERRORS 
+ 	 
+____________________________________________________
+
+Heading on with routing error hoping to get things right 
+_________________
+
+Add on top of movie.rb (http://pastebin.com/w4c1nm1q) and try this in rails console: 
+
+	# now try in console:
+	m = Movie.create!(:title => 'STAR  wars', :release_date => '27-5-1977')
+	m.title  # => "Star Wars"
+
+
+To be pasted in app/controllers/application_controller.rb (http://pastebin.com/MHuGdTUT)
+
+NOTE: uninitialized constant ApplicationController::Moviegoer
+
+
+Then still in app/controllers/application_controller.rb (http://pastebin.com/VMBKsbBs)
+
+
+RUN the following in the terminal:
+
+	rails generate model Moviegoer name:string provider:string uid:string
+
+ans RUN rake db:migrate
+
+Edit app/models/moviegoer.rb to look like this (http://pastebin.com/LyD2qxRA)
+
+
+In /config/routes.rb paste (http://pastebin.com/pBuULmVY)
+
+NOTE: No route matches {:controller=>"sessions", :action=>"create"}
+
+
+
+CREATE a file in /app/controllers/session_controller.rb containing (http://pastebin.com/QfYMbdKX)
+
+Paste the code (http://pastebin.com/sGpXM3kW) in /app/views/layout/application.html.haml
+
+
+Because we use Twitter as an example, we add gem omniauth-twitter to our Gemfile and run bundle install --without production as usual.
+
+
+
+
+
 
 
 

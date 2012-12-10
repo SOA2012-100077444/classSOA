@@ -1,21 +1,17 @@
 Myrottenpotatoes::Application.routes.draw do
-  resources :movies
-  post '/movies/search_tmdb'
-  root :to => redirect('/movies')
+  resources :movies  
+    post '/movies/search_tmdb'
+    root :to => redirect('/movies')
+
+#	match 'auth/:provider/callback' => 'sessions#create',:as => 'login'
+#	match 'logout' => 'sessions#destroy'
 end
-
-# add to routes.rb, just before or just after 'resources :movies' :
-
-# Route that posts 'Search TMDb' form
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
@@ -65,3 +61,4 @@ end
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+

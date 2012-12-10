@@ -10,8 +10,7 @@ class CreateMovies < ActiveRecord::Migration
       t.timestamps
     end
   end
-
-  def down
+	def down
     drop_table 'movies' # deletes the whole table and all its data!
   end
 end

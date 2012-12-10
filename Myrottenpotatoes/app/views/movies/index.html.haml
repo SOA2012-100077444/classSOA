@@ -1,4 +1,3 @@
--#  This file is app/views/movies/index.html.haml
 %h2 All Movies
 
 %table#movies
@@ -9,16 +8,10 @@
       %th Release Date
       %th More Info
   %tbody
-    - @movies.each do |movie|
-      %tr
-        %td= movie.title 
-        %td= movie.rating
-        %td= movie.release_date
-        %td= link_to "More about #{movie.title}", movie_path(movie)
+
+  = render :partial =>'movie', :collection =>@movies
 
 = link_to 'Add new movie', new_movie_path
-
--# add to end of app/views/movies/index.html.haml:
 
 %h1 Search TMDb for a movie
 

@@ -1,3 +1,4 @@
+-#  This file is app/views/movies/index.html.haml
 %h2 All Movies
 
 %table#movies
@@ -9,9 +10,9 @@
       %th More Info
   %tbody
 
-      = render :partial =>'movie', :collection =>@movies
+# render :partial => :collections =>@movies
 
-= link_to 'Add new movie', new_movie_path
+-# add to end of app/views/movies/index.html.haml:
 
 %h1 Search TMDb for a movie
 

@@ -5,10 +5,19 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-
   %body
     - if flash[:notice]
       #notice.message= flash[:notice]
     - elsif flash[:warning]
       #warning.message= flash[:warning]
-= yield
+    = yield
+
+#	login
+#  - if @current_user
+#    %p.welcome  Welcome, #{@current_user.name}!
+    = link_to 'Log Out', logout_path
+  - else
+    %p.login= link_to 'Log in with your Twitter account', login_path (:provider => 'twitter')
+    
+
+

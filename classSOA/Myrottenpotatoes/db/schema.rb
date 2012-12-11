@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211082538) do
+ActiveRecord::Schema.define(:version => 20121211171917) do
 
   create_table "moviegoers", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20121211082538) do
     t.datetime "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.integer "potatoes"
+    t.text    "comments"
+    t.integer "moviegoers_id"
+    t.integer "movies_id"
   end
 
   create_table "users", :force => true do |t|

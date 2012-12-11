@@ -1,8 +1,4 @@
 class Movie < ActiveRecord::Base
- has_many :reviews
-end
-
-class Movie < ActiveRecord::Base
  before_save :capitalize_title
   def capitalize_title
   self.title = self.title.split(/\s+/).map(&:downcase).
@@ -32,6 +28,7 @@ def self.find_in_tmdb(string)
 end
 
 class Movie < ActiveRecord::Base
+  has_many :reviews
   RATINGS = %w[G PG PG-13 R NC-17]  #  %w[] shortcut for array of strings
   validates :title, :presence => true
   validates :release_date, :presence => true

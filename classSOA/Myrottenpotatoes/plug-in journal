@@ -1,0 +1,172 @@
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ rails console
+Loading development environment (Rails 3.1.0)
+irb(main):001:0> # try in console:
+irb(main):002:0* m = Movie.new(:title => '', :rating => 'RG', :release_date => '1929-01-01')
+=> #<Movie id: nil, title: "", rating: "RG", description: nil, release_date: "1929-01-01 00:00:00", created_at: nil, updated_at: nil>
+irb(main):003:0> # force validation checks to be performed:
+irb(main):004:0* m.valid?  # => false
+=> false
+irb(main):005:0> m.errors[:title] # => ["can't be blank"]
+=> ["can't be blank"]
+irb(main):006:0> m.errors[:rating] # => ["is not included in the list"]
+=> ["is not included in the list"]
+irb(main):007:0> m.errors[:release_date] # => ["must be 1930 or later"]
+=> ["must be 1930 or later"]
+irb(main):008:0> m.errors.full_messages # => ["Title can't be blank", "Rating is not included in the list", "Release date must be 1930 or later"]
+=> ["Title can't be blank", "Release date must be 1930 or later", "Rating is not included in the list"]
+irb(main):009:0> 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ 
+
+saasbook@saasbook:~$ cd Documents/classSOA/Myrottenpotatoes/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ ls
+app        Gemfile          log              public    Untitled Document 1~
+config     Gemfile~         My New Journal   Rakefile  vendor
+config.ru  Gemfile.lock     My New Journal~  README
+db         journal-plugin   My Regexes       script
+doc        journal-plugin~  My Regexes~      spec
+features   lib              plug-in journal  tmp
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ cd app/views/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views$ ls
+layouts  movies  sessions
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views$ cd movies/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ ls
+edit.html.haml     index.html.haml         _movie.html.haml   show.html.haml
+edit.html.haml~    index.html.haml~        _movie.html.haml~  show.html.haml~
+Edit.html.haml~    _movie_form.html.haml   new.html.haml
+_index.html.haml~  _movie_form.html.haml~  new.html.haml~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vim index.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ ls
+assets  controllers  helpers  mailers  models  views
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ cd controllers/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb   movies_controller.rb~   sessions_controller.rb~
+application_controller.rb~  session_controller.rb~
+movies_controller.rb        sessions_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vim movies_controller.rb
+
+[1]+  Stopped                 vim movies_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vi application_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ ls
+app        Gemfile~         My New Journal   README
+config     Gemfile.lock     My New Journal~  script
+config.ru  journal-plugin   My Regexes       spec
+db         journal-plugin~  My Regexes~      tmp
+doc        lib              plug-in journal  Untitled Document 1~
+features   log              public           vendor
+Gemfile    MYGUIDE          Rakefile
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ cd config/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/config$ vi routes.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/config$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ cd app/m
+mailers/ models/  
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ cd app/models/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ vi
+vi         viewres    vim        vimdiff    vimtutor   visudo     
+view       vigr       vim.basic  vim.tiny   vipw       
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ cd views/movies/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi _movie_form.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi new.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi edit.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi _movie.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ cd controllers/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vi movies_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vi movies_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vi movies_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb   movies_controller.rb~   sessions_controller.rb~
+application_controller.rb~  session_controller.rb~
+movies_controller.rb        sessions_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ rm movies_controller.rb~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb   movies_controller.rb    sessions_controller.rb
+application_controller.rb~  session_controller.rb~  sessions_controller.rb~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ rm application_controller.rb~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb  session_controller.rb~  sessions_controller.rb~
+movies_controller.rb       sessions_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ rm session_controller.rb~ 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ rm session_controller.rb~ 
+rm: cannot remove `session_controller.rb~': No such file or directory
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb  sessions_controller.rb
+movies_controller.rb       sessions_controller.rb~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ rm sessions_controller.rb~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb  movies_controller.rb  sessions_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb  movies_controller.rb  sessions_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ ls
+application_controller.rb  movies_controller.rb  sessions_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ ls
+assets  controllers  helpers  mailers  models  views
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ cd models/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ ls
+message.rb~  moviegoer.rb  moviegoer.rb~  movie.rb  movie.rb~  user.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ rm movie.rb~saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ l
+message.rb~  moviegoer.rb  moviegoer.rb~  movie.rb  user.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ rm moviegoer.rb~
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ l
+message.rb~  moviegoer.rb  movie.rb  user.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ rm message.rb~ 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ l
+moviegoer.rb  movie.rb  user.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app$ cd views/movies/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi _movie_form.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views$ rake routes
+(in /home/ubuntu/Documents/classSOA/Myrottenpotatoes)
+            movies GET    /movies(.:format)                  {:action=>"index", :controller=>"movies"}
+                   POST   /movies(.:format)                  {:action=>"create", :controller=>"movies"}
+         new_movie GET    /movies/new(.:format)              {:action=>"new", :controller=>"movies"}
+        edit_movie GET    /movies/:id/edit(.:format)         {:action=>"edit", :controller=>"movies"}
+             movie GET    /movies/:id(.:format)              {:action=>"show", :controller=>"movies"}
+                   PUT    /movies/:id(.:format)              {:action=>"update", :controller=>"movies"}
+                   DELETE /movies/:id(.:format)              {:action=>"destroy", :controller=>"movies"}
+movies_search_tmdb POST   /movies/search_tmdb(.:format)      {:controller=>"movies", :action=>"search_tmdb"}
+              root        /                                  {:to=>#<Proc:0xa210638@/usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/routing/redirection.rb:85 (lambda)>}
+             login        /auth/:provider/callback(.:format) {:controller=>"sessions", :action=>"create"}
+            logout        /logout(.:format)                  {:action=>"destroy"saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ rails generate migration create_reviews
+      invoke  active_record
+      create    db/migrate/20121211171917_create_reviews.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ ls
+app        doc       Gemfile.lock     log              My Regexes       Rakefile  tmp
+config     features  journal-plugin   MYGUIDE          My Regexes~      README    Untitled Document 1~
+config.ru  Gemfile   journal-plugin~  My New Journal   plug-in journal  script    vendor
+db         Gemfile~  lib              My New Journal~  public           spec
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ cd db
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/db$ ls
+development.sqlite3  migrate  schema.rb  seeds.rb  seeds.rb~  test.sqlite3
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/db$ cd migrate/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/db/migrate$ ls
+20121106201202_create_movies.rb   20121202192500_create_moviegoers.rb   20121211082538_create_users.rb
+20121106201202_create_movies.rb~  20121202192500_create_moviegoers.rb~  20121211171917_create_reviews.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/db/migrate$ vi 20121211171917_create_reviews.rb 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/db/migrate$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/db$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ cd app/models/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ ls
+moviegoer.rb  moviegoer.rb~  movie.rb  movie.rb~  user.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ nano review.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi moviegoer.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ rake db:migrate
+==  CreateReviews: migrating ==================================================
+-- create_table("reviews")
+   -> 0.0017s
+==  CreateReviews: migrated (0.0022s) =========================================
+
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ 
+
+

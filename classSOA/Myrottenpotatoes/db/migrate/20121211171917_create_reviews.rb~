@@ -7,5 +7,6 @@ class CreateReviews < ActiveRecord::Migration
       t.references 'movies'
     end
   end
-  def down ; drop_table 'reviews' ; end
+
+  def down; drop_table 'reviews'; end
 end

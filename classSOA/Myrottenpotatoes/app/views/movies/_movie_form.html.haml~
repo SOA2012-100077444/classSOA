@@ -1,6 +1,12 @@
--# insert at top of _movie_form.html.haml
+-# _movie_form.html.haml
 
- 
+- unless @movie.nil? || @movie.errors.empty?
+  #warning
+    Errors prevented this movie from being #{controller.action_name}d:
+    %ul
+      - @movie.errors.full_messages.each do |error|
+        %li= error
+
 = label :movie, :title, 'Title'
 = text_field :movie, 'title'
 
@@ -9,4 +15,3 @@
 
 = label :movie, :release_date, 'Released On'
 = date_select :movie, :release_date
-

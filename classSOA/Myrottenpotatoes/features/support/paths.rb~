@@ -22,7 +22,8 @@ module NavigationHelpers
     when /^the "Search Results" page/
       '/movies'
     when /^not found/
-      '/movies/:id'
+      '/^(?:|I )should not see "([^"]*)"$/'
+  
     
 
 

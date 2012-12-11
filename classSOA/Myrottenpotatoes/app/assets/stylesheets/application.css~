@@ -36,6 +36,15 @@ h1.title {
   font-size: 2em;
   font-style: normal;
 }
+h2.title {
+  margin: 0 0 1em;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border-bottom: 4px solid gold;
+  font-size: 2em;
+  font-style: normal;
+}
 table#movies {
   margin: 10px;
   border-collapse: collapse;
@@ -52,9 +61,17 @@ table#movies th, table#movies td {
   text-align: left;
 }
 #notice, #warning {
-  background: rosybrown;
-  margin: 1em 0;
-  padding: 4px;
+  color: red;
+  padding: 2px;
+  font-weight: bold;
+  border: 2px solid red;
+
+}
+div.field_with_errors input {
+  border: 1px solid red;
+  background-color: yellow;
+  font-weight: bold;
+
 }
 form label {
   display: block;

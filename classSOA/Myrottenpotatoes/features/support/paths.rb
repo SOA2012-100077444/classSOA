@@ -21,6 +21,8 @@ module NavigationHelpers
       '/movies/new'
     when /^the "Search Results" page/
       '/movies'
+    when /^not found/
+      '/'
   
     
 

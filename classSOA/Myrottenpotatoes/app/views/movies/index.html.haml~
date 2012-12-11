@@ -9,9 +9,9 @@
       %th More Info
   %tbody
 
-      = render :partial =>'movie', :collection =>@movies
+  = render :partial =>'movie', :collection =>@movies
 
-= link_to 'Add new movie', new_movie_path
+= link_to 'Kora', new_movie_path
 
 %h1 Search TMDb for a movie
 

@@ -25,7 +25,6 @@ gem 'ruby-tmdb'
 # Deploy with Capistrano
 # gem 'capistrano'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
@@ -33,6 +32,8 @@ gem 'omniauth-facebook'
 gem 'haml'
 # use Ruby debugger
 group :development, :test do
+  # use SQLite only in development and testing
+  gem 'sqlite3'
   gem 'ruby-debug19'
 end
 
@@ -45,6 +46,8 @@ group :test, :development do
   gem 'launchy'          # a useful debugging aid for user stories
   gem 'rspec-rails'
 end
-group :development, :test do
-  gem 'test-unit-rails'
+
+group :production do
+  # use PostgreSQL in production (Heroku)
+  gem 'pg'
 end

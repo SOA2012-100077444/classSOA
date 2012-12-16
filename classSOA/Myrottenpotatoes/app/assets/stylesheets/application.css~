@@ -1,6 +1,16 @@
 /* Simple CSS styling for RottenPotatoes app */
 /* Add these lines to app/assets/stylesheets/application.css */
 
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_selfa
+ *= require_tree . 
+*/
+/* Simple CSS styling for RottenPotatoes app */
+/* Add these lines to app/assets/stylesheets/application.css */
+ 
 html, body {
   margin: 0;
   padding: 0;
@@ -36,15 +46,6 @@ h1.title {
   font-size: 2em;
   font-style: normal;
 }
-h2.title {
-  margin: 0 0 1em;
-  padding: 10px;
-  background-color: green;
-  color: white;
-  border-bottom: 4px solid gold;
-  font-size: 2em;
-  font-style: normal;
-}
 table#movies {
   margin: 10px;
   border-collapse: collapse;
@@ -62,16 +63,15 @@ table#movies th, table#movies td {
 }
 #notice, #warning {
   color: red;
-  padding: 2px;
+  padding: 0.5em;
   font-weight: bold;
-  border: 2px solid red;
-
+  border: 2px solid red
+  
 }
 div.field_with_errors input {
   border: 1px solid red;
   background-color: yellow;
   font-weight: bold;
-
 }
 form label {
   display: block;
@@ -79,3 +79,4 @@ form label {
   font-weight: bold;
   color: maroon;
 }
+

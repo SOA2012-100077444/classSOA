@@ -816,7 +816,7 @@ THEN TRY THE FOLLOWING IN RAILS CONSOLE
 	m.errors[:release_date] # => ["must be 1930 or later"]
 	m.errors.full_messages # => ["Title can't be blank", "Rating is not included in the list", "Release date must be 1930 or later"]
 
-NOTE: There is no "grandfathered" NameError anymore. I don't know why.
+NOTE: Delete any "grandfathered" reference in commands.
 
 NOW modify "create" and "update" controller actions to match the figure in (http://pastebin.com/CM6ntZzK).
 
@@ -828,12 +828,9 @@ INSERT at the top of _movie_form.html.haml (http://pastebin.com/YGqvV8pg)
 Watch screen cats 7.1.1 (http://vimeo.com/34754932) How model validations interact with controllers and views
 
 
-NOTE: ROUTING ERROR. I DON'T GET THE EXPECTED ERRORS 
  	 
 ____________________________________________________
 
-Heading on with routing error hoping to get things right 
-_________________
 
 Add on top of movie.rb (http://pastebin.com/w4c1nm1q) and try this in rails console: 
 
@@ -843,8 +840,6 @@ Add on top of movie.rb (http://pastebin.com/w4c1nm1q) and try this in rails cons
 
 
 To be pasted in app/controllers/application_controller.rb (http://pastebin.com/MHuGdTUT)
-
-NOTE: uninitialized constant ApplicationController::Moviegoer
 
 
 Then still in app/controllers/application_controller.rb (http://pastebin.com/VMBKsbBs)
@@ -861,7 +856,6 @@ Edit app/models/moviegoer.rb to look like this (http://pastebin.com/LyD2qxRA)
 
 In /config/routes.rb paste (http://pastebin.com/pBuULmVY)
 
-NOTE: No route matches {:controller=>"sessions", :action=>"create"}
 
 
 
@@ -872,20 +866,189 @@ Paste the code (http://pastebin.com/sGpXM3kW) in /app/views/layout/application.h
 
 Because we use Twitter as an example, we add gem omniauth-twitter to our Gemfile and run bundle install --without production as usual.
 
+_________________________________________________________________________________________________________________________________________
+
+Remaking and editing files from command prompt
+________________________________________________________________________________________________________________________________________
+
+		~ /app/views/movies$ vim index.html.haml
+		~ /app/controllers$ vim movies_controller.rb
+
+		[1]+  Stopped                 vim movies_controller.rb
+		~ /app/controllers$ vi application_controller.rb
+		 ~ /config$ vi routes.rb
+
+		 ~ /app/models$ vi movie.rb
+		 ~ /app/views/movies$ vi _movie_form.html.haml
+		 ~ /app/views/movies$ vi new.html.haml
+		 ~ /app/views/movies$ vi edit.html.haml
+		 ~ /app/views/movies$ vi _movie.html.haml
+		 ~ /app/views/movies$ cd ..
+		 ~ /app/controllers$ vi movies_controller.rb
+
+		 ~ /app/models$ vi movie.rb 
+		 ~ /app/views/movies$ vi _movie_form.html.haml
+		 ~ $ rails generate migration create_reviews
+				  invoke  active_record
+				  create    db/migrate/20121211171917_create_reviews.rb
+
+		 ~ /app/models$ nano review.rb
+		 ~ /app/models$ vi movie.rb
+		 ~ /app/models$ vi moviegoer.rb
+		 ~ /app/models$ 
+		 ~ $ rake db:migrate
+
+==  CreateReviews: migrating ==================================================
+-- create_table("reviews")
+   -> 0.0017s
+==  CreateReviews: migrated (0.0022s) =========================================
+
+		 ~/Documents/classSOA/Myrottenpotatoes$ 
+		 ~/Documents$ git init
+		Reinitialized existing Git repository in /home/ubuntu/Documents/.git/
+		 ~/Documents$ git add classSOA/
+		 ~/Documents$ git commit -m "December_12"
+		[master 408e23d] December_12
+		 Committer: saasbook <saasbook@saasbook.(none)>
+		Your name and email address were configured automatically based
+		on your username and hostname. Please check that they are accurate.
+		You can suppress this message by setting them explicitly:
+
+				git config --global user.name "Your Name"
+				git config --global user.email you@example.com
+
+		After doing this, you may fix the identity used for this commit with:
+
+				git commit --amend --reset-author
+
+		 3 files changed, 185 insertions(+), 2 deletions(-)
+		 create mode 100644 classSOA/Myrottenpotatoes/db/migrate/20121211171917_create_reviews.rb~
+		 create mode 100644 classSOA/Myrottenpotatoes/plug-in journal~
+		 ~/Documents$ git push
+		Username for 'https://github.com': SOA2012-100077444
+		Password for 'https://SOA2012-100077444@github.com': 
+		To https://github.com/SOA2012-100077444/classSOA.git
+			 771a6df..408e23d  master -> master
+		 ~/Documents$ 
+____________________________________________________________________________________________________________________________________________
+
+DELETING THE ODDS (Today December 16, I delete everything not needed and differring from my classmates files)
+____________________________________________________________________________________
+
+1- Twitter stuffs in the Gemfile: gem 'omniauth-twitter'
+2- still in the Gemgile:   gem 'test-unit-rails' located in "group :development, :test do" and run bundle install --without production.
+
+_______________________________________________________________________________________________________________________________________________
+
+SETTING UP BEFORE DEPLOYING TO HEROKU
+________________________________________________________________________________________________________________________________________________
+
+1. PRODUCTION SETUP
+_____________________
 
 
+Gemfile: Define database for production environment (http://pastebin.com/gi4GE8CQ)
+
+	Modify the Gemfile as follows:
+		
+		group :development, :test do
+			# use SQLite only in deployment and testing
+			gem 'sqlite3'
+		end
+
+		group :production do
+			# use PostgreSQL in production (Heroku)
+			gem 'pg'
+		end
+
+	Modify the production.rb file in config/environment/ by add the following command:
+			
+			"config.assets.complie = true"
+
+	NOTE: the file "production.rb" already contains a command line "config.assets.complie = false". Though I wonder if I should modify "false" into "true" I chose to add an independant command  "config.assets.complie = true".
+ 
+_____________________________
+
+IN COMMMAND PROMPT
+_____________________________
+
+ ~/Documents/classSOA/Myrottenpotatoes$ vi Gemfile
+ ~/Documents/classSOA/Myrottenpotatoes$ cd config/environments/ ~/Documents/classSOA/Myrottenpotatoes/config/environments$ vi production.rb 
+ ~/Documents/classSOA/Myrottenpotatoes/config/environments$ cd ..
+ ~/Documents/classSOA/Myrottenpotatoes/config$ cd ..
+ ~/Documents/classSOA/Myrottenpotatoes$ bundle install --without production
+
+  [...}
+
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
 
 
+_____________________________________________________________________________________________________________________________________________
+
+CREATE AN HEROKU ACCOUNT ONLINE
+_____________________________________________________________________________________________________________________________________________
+
+Then install Heroku toolbelt through the link that shows up once the account is created.
+
+In command prompt run the following:
+
+	 ~/Documents/classSOA/Myrottenpotatoes$ heroku login
+				Enter your Heroku credentials.
+				Email: korasnova@gmail.com
+				Password: 
+
+				The 'heroku' gem has been deprecated and replaced with the Heroku Toolbelt, download and install from https://toolbelt.heroku.com.
+
+				Found existing public key: /home/ubuntu/.ssh/id_rsa.pub
+				Uploading ssh public key /home/ubuntu/.ssh/id_rsa.pub
+	 ~/Documents/classSOA/Myrottenpotatoes$
+
+___________________________________________________________________
+
+Now ready to create our first Heroku app
+___________________________________________________________________
+
+		~/Documents/classSOA/Myrottenpotatoes$ heroku create
+
+				Creating fierce-gorge-8915...
+				The 'heroku' gem has been deprecated and replaced with the Heroku Toolbelt, download and install from https://toolbelt.heroku.com.
+
+				 done, stack is cedar
+				http://fierce-gorge-8915.herokuapp.com/ | git@heroku.com:fierce-gorge-8915.git
+				Git remote heroku added
+
+_______________________________________________________________________
+
+Six-step deployment
+_______________________________________________________________________
 
 
+1. Making sur our app is running correctly and passing all our test locally
 
+		When running "bundle exec cucumber" the following error displays:
+			
+							 And I should not see "not found"               # features/step_definitions/web_steps.rb:123
+							expected #has_no_content?("not found") to return true, got false (RSpec::Expectations::ExpectationNotMetError)
+							./features/step_definitions/web_steps.rb:125:in `/^(?:|I )should not see "([^"]*)"$/'
+							features/search_tmdb.feature:25:in `And I should not see "not found"'
 
+				Failing Scenarios:
+				cucumber features/search_tmdb.feature:19 # Scenario: Try to add existing movie (happy path)
 
+				3 scenarios (1 failed, 2 passed)
+				21 steps (1 failed, 20 passed)
+				0m1.897s
 
+SOLUTION: Copy "/^(?:|I )should not see "([^"]*)"$/" and paste and replace line 125  in /features/step_definitions/web_steps.rb
 
+				3 scenarios (3 passed)
+				21 steps (21 passed)
+				0m1.852s
+__________________________________________________________________________
 
+2. Logging in our VM and changing to the root directory of application.
 
-
+		
 
 
 

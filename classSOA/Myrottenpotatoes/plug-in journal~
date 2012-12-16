@@ -1,0 +1,80 @@
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ rails console
+Loading development environment (Rails 3.1.0)
+irb(main):001:0> # try in console:
+irb(main):002:0* m = Movie.new(:title => '', :rating => 'RG', :release_date => '1929-01-01')
+=> #<Movie id: nil, title: "", rating: "RG", description: nil, release_date: "1929-01-01 00:00:00", created_at: nil, updated_at: nil>
+irb(main):003:0> # force validation checks to be performed:
+irb(main):004:0* m.valid?  # => false
+=> false
+irb(main):005:0> m.errors[:title] # => ["can't be blank"]
+=> ["can't be blank"]
+irb(main):006:0> m.errors[:rating] # => ["is not included in the list"]
+=> ["is not included in the list"]
+irb(main):007:0> m.errors[:release_date] # => ["must be 1930 or later"]
+=> ["must be 1930 or later"]
+irb(main):008:0> m.errors.full_messages # => ["Title can't be blank", "Rating is not included in the list", "Release date must be 1930 or later"]
+=> ["Title can't be blank", "Release date must be 1930 or later", "Rating is not included in the list"]
+irb(main):009:0> 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ 
+
+saasbook@saasbook:~$ cd Documents/classSOA/Myrottenpotatoes/
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vim index.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vim movies_controller.rb
+
+[1]+  Stopped                 vim movies_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vi application_controller.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/config$ vi routes.rb
+
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi _movie_form.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi new.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi edit.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi _movie.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ cd ..
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/controllers$ vi movies_controller.rb
+
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/views/movies$ vi _movie_form.html.haml
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ rails generate migration create_reviews
+      invoke  active_record
+      create    db/migrate/20121211171917_create_reviews.rb
+
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ nano review.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi movie.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ vi moviegoer.rb
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes/app/models$ 
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ rake db:migrate
+==  CreateReviews: migrating ==================================================
+-- create_table("reviews")
+   -> 0.0017s
+==  CreateReviews: migrated (0.0022s) =========================================
+
+saasbook@saasbook:~/Documents/classSOA/Myrottenpotatoes$ 
+saasbook@saasbook:~/Documents$ git init
+Reinitialized existing Git repository in /home/ubuntu/Documents/.git/
+saasbook@saasbook:~/Documents$ git add classSOA/
+saasbook@saasbook:~/Documents$ git commit -m "December_12"
+[master 408e23d] December_12
+ Committer: saasbook <saasbook@saasbook.(none)>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 185 insertions(+), 2 deletions(-)
+ create mode 100644 classSOA/Myrottenpotatoes/db/migrate/20121211171917_create_reviews.rb~
+ create mode 100644 classSOA/Myrottenpotatoes/plug-in journal~
+saasbook@saasbook:~/Documents$ git push
+Username for 'https://github.com': SOA2012-100077444
+Password for 'https://SOA2012-100077444@github.com': 
+To https://github.com/SOA2012-100077444/classSOA.git
+   771a6df..408e23d  master -> master
+saasbook@saasbook:~/Documents$ 
+
+

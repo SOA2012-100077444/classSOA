@@ -961,11 +961,11 @@ Gemfile: Define database for production environment (http://pastebin.com/gi4GE8C
 			gem 'pg'
 		end
 
-	Modify the production.rb file in config/environment/ by add the following command:
+	Modify the production.rb file in config/environment/ by add the following command (http://pastebin.com/yfWZ020B):
 			
 			"config.assets.complie = true"
 
-	NOTE: the file "production.rb" already contains a command line "config.assets.complie = false". Though I wonder if I should modify "false" into "true" I chose to add an independant command  "config.assets.complie = true".
+	NOTE: the file "production.rb" already contains a command line "config.assets.complie = false". We should  modify "false" into "true".
  
 _____________________________
 
@@ -1044,17 +1044,116 @@ SOLUTION: Copy "/^(?:|I )should not see "([^"]*)"$/" and paste and replace line 
 				3 scenarios (3 passed)
 				21 steps (21 passed)
 				0m1.852s
+
+________________________________________________________
+
+PUSHED TO GITHUB
+__________________________________________________________________________
 __________________________________________________________________________
 
-2. Logging in our VM and changing to the root directory of application.
+2. Logging in our VM and changing to the root directory of application and
 
-		
+3. Create new Heroku application:http://applicationname.herokuapp.com (It can be renamed on Heroku website)		
+
+	~/Documents/classSOA/Myrottenpotatoes$ heroku create --stack cedar
+			Creating safe-river-8806... done, stack is cedar
+			http://safe-river-8806.herokuapp.com/ | git@heroku.com:safe-river-8806.git
+	~/Documents/classSOA/Myrottenpotatoes$ 
+
+4. Push git repo's master branch to Heroku and run "git push heroku master"
+
+		~/Documents/classSOA$ git push heroku master
+
+		Counting objects: 124, done.
+		Compressing objects: 100% (110/110), done.
+		Writing objects: 100% (124/124), 100.36 KiB, done.
+		Total 124 (delta 3), reused 0 (delta 0)
+		 !     Heroku push rejected, no Cedar-supported app detected
+
+		To git@heroku.com:fierce-gorge-8915.git
+		 ! [remote rejected] master -> master (pre-receive hook declined)
+		error: failed to push some refs to 'git@heroku.com:fierce-gorge-8915.git'
+
+~/Documents/classSOA/Myrottenpotatoes$ sudo gem install heroku
+
+[sudo] password for saasbook: 
+
+		[...]
+
+ ~/Documents/classSOA/Myrottenpotatoes$ bundle install --without production
+
+		[...]
+
+	Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+ ~/Documents/classSOA/Myrottenpotatoes$ git init
+	Reinitialized existing Git repository in /home/ubuntu/Documents/classSOA/Myrottenpotatoes/.git/
+ ~/Documents/classSOA/Myrottenpotatoes$ git add .
+ ~/Documents/classSOA/Myrottenpotatoes$ git commit -m "h_app"
+		[master (root-commit) 70fbe64] h_app
+		 Committer: saasbook <saasbook@saasbook.(none)>
+		Your name and email address were configured automatically based
+		on your username and hostname. Please check that they are accurate.
+		You can suppress this message by setting them explicitly:
+
+			git config --global user.name "Your Name"
+			git config --global user.email you@example.com
+
+		After doing this, you may fix the identity used for this commit with:
+
+			git commit --amend --reset-author
+
+ 111 files changed, 16574 insertions(+)
+	 	
+		[...]
+
+ ~/Documents/classSOA/Myrottenpotatoes$ git push heroku master
+		Counting objects: 145, done.
+		Compressing objects: 100% (134/134), done.
+		Writing objects: 100% (145/145), 110.25 KiB, done.
+		Total 145 (delta 3), reused 0 (delta 0)
+		-----> Ruby/Rails app detected
+		-----> Installing dependencies using Bundler version 1.3.0.pre.2
+			   Running: bundle install --without development:test --path vendor/bundle --binstubs bin/ --deployment
+
+				   [...]
+
+			   Your bundle is complete! It was installed into ./vendor/bundle
+			   Post-install message from rdoc:
+			   Depending on your version of ruby, you may need to install ruby rdoc/ri data:
+			   <= 1.8.6 : unsupported
+			   = 1.8.7 : gem install rdoc-data; rdoc-data --install
+			   = 1.9.1 : gem install rdoc-data; rdoc-data --install
+			   >= 1.9.2 : nothing to do! Yay!
+			   Cleaning up the bundler cache.
+		-----> Writing config/database.yml to read from DATABASE_URL
+		-----> Preparing app for Rails asset pipeline
+			   Running: rake assets:precompile
+			   mkdir -p /tmp/build_1ev1wxxcad4w2/public/assets
+			   mkdir -p /tmp/build_1ev1wxxcad4w2/public/assets
+			   mkdir -p /tmp/build_1ev1wxxcad4w2/public/assets
+			   mkdir -p /tmp/build_1ev1wxxcad4w2/public/assets
+			   mkdir -p /tmp/build_1ev1wxxcad4w2/public/assets
+			   Asset precompilation completed (12.12s)
+		-----> Rails plugin injection
+			   Injecting rails_log_stdout
+			   Injecting rails3_serve_static_assets
+		-----> Discovering process types
+			   Procfile declares types      -> (none)
+			   Default types for Ruby/Rails -> console, rake, web, worker
+		-----> Compiled slug size: 10.4MB
+		-----> Launching... done, v6
+			   http://fierce-gorge-8915.herokuapp.com deployed to Heroku
+
+To git@heroku.com:fierce-gorge-8915.git
+ * [new branch]      master -> master
 
 
+ ~/Documents/classSOA/Myrottenpotatoes$
 
 
+API Key
 
-
+    557ae9fc9816c51500e9ddce6a520fa3ccdc82d0
 
 
 

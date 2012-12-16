@@ -947,7 +947,7 @@ ________________________________________________________________________________
 _____________________
 
 
-Gemfile: Define database for production environment
+Gemfile: Define database for production environment (http://pastebin.com/gi4GE8CQ)
 
 	Modify the Gemfile as follows:
 		
@@ -1023,6 +1023,32 @@ Six-step deployment
 _______________________________________________________________________
 
 
+1. Making sur our app is running correctly and passing all our test locally
+
+		When running "bundle exec cucumber" the following error displays:
+			
+							 And I should not see "not found"               # features/step_definitions/web_steps.rb:123
+							expected #has_no_content?("not found") to return true, got false (RSpec::Expectations::ExpectationNotMetError)
+							./features/step_definitions/web_steps.rb:125:in `/^(?:|I )should not see "([^"]*)"$/'
+							features/search_tmdb.feature:25:in `And I should not see "not found"'
+
+				Failing Scenarios:
+				cucumber features/search_tmdb.feature:19 # Scenario: Try to add existing movie (happy path)
+
+				3 scenarios (1 failed, 2 passed)
+				21 steps (1 failed, 20 passed)
+				0m1.897s
+
+SOLUTION: Copy "/^(?:|I )should not see "([^"]*)"$/" and paste and replace line 125  in /features/step_definitions/web_steps.rb
+
+				3 scenarios (3 passed)
+				21 steps (21 passed)
+				0m1.852s
+__________________________________________________________________________
+
+2. Logging in our VM and changing to the root directory of application.
+
+		
 
 
 

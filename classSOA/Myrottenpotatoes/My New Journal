@@ -961,11 +961,11 @@ Gemfile: Define database for production environment (http://pastebin.com/gi4GE8C
 			gem 'pg'
 		end
 
-	Modify the production.rb file in config/environment/ by add the following command:
+	Modify the production.rb file in config/environment/ by add the following command (http://pastebin.com/yfWZ020B):
 			
 			"config.assets.complie = true"
 
-	NOTE: the file "production.rb" already contains a command line "config.assets.complie = false". Though I wonder if I should modify "false" into "true" I chose to add an independant command  "config.assets.complie = true".
+	NOTE: the file "production.rb" already contains a command line "config.assets.complie = false". We should  modify "false" into "true".
  
 _____________________________
 
